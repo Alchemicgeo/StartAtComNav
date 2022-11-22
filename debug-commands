@@ -1,0 +1,7 @@
+log gpgga ontime 0.2
+log comX gpsephemb ontime 60        //GPS ephemeris
+log comX bd2ephemb ontime 60        //Beidou2 ephemeris
+log comX bd3ephemb ontime 60        //Beidou3 ephemeris
+log comX gloephemerisb ontime 60    //Glonass ephemeris
+log comX galephemb ontime 60        //Galolei ephemeris
+Set m919real on 200 1               // 200 means per 200ms record once, 1 means com1

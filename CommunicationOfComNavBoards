@@ -1,0 +1,17 @@
+The communication logic of ComNav GNSS Board is a little similar like Novatel OEM Board, 
+ the "commands communication" is sperated with "rtcm comminucation". 
+ Somtimes they will call them "setup mode" and "diff mode"
+
+The board default mode is "setup mode", so in this case, you can easily send and read any information as you want, 
+ for instance, "log version", "log sysconfig", or output the position like "log gpgga ontime 1" and so on.
+ But, until now, actually you cannot get RTK positioning still, to make RTK you need satisfy two requirements,
+ firstly, the board need get the rtcm corrections, please notice, it will support "rtcm2.3", "rtcm3.0", "rtcm3.1", 3.2, even 3.3, but it cannot support Trimble CMR, or CMR+ very well.
+
+Anyway, let's continue, so simply saying, if you want to get rtk, reach gpgga status as 4 and 5, you must transfer the corrections to one serial port, for example COM1 (actually COM1, COM2, COM3 all support),
+ and then set this port as "diff mode", command is "interfacemode COM1 auto auto on", and after that 5-10secs, you should see the status changing.
+
+You need also considered, when after you set "diff mode", normal commands cannot be recognized in this port, 
+ so it means, if you only use one port for outputting, corrections commmunicating (of course it can work in one port),
+ you need send "interfacemode saveconfig" but not "saveconfig" to save all configures to the memory.
+
+I forget to say, normally, after you send commands, you need send "saveconfig", unless you want to send commands everytime re-powering.
